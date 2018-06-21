@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  input_url: MyString
+  output_url: MyText
+  http_status: 1
+
+two:
+  input_url: MyString
+  output_url: MyText
+  http_status: 1
