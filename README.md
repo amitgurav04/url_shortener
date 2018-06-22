@@ -70,3 +70,7 @@ Run following commands from url_shortener directory
     ```
     $ heroku open
     ```
+
+### How to Use
+* Open [How to Use](doc/how-to-use.md) section. It helps you to generate short url on [https://amit-mini-url.herokuapp.com/](https://amit-mini-url.herokuapp.com/)
+
