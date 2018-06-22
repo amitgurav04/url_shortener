@@ -4,12 +4,15 @@ module Shortener
   KEY_LENGTH = 6
 
   private
+
+  # This method encode the id using Base 62 encoding and return encoded key
   def encode(id)
     code = ""
     code = convert(id, BASE)
     (code.length > KEY_LENGTH) ? "" : "0" * (KEY_LENGTH - code.length) + code
   end
 
+  # This method decode the key and return the Id of record
   def decode(code)
     size = code.length
     if (size == 1)
@@ -19,6 +22,7 @@ module Shortener
     end
   end
 
+  # This method take the decimal number and base, then convert it to base N number
   def convert(number, base)
     quotient = number / base
     remainder = number % base
