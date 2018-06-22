@@ -27,7 +27,7 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    @link = Link.new(link_params)
+    @link = Link.find_by(output_url: link_params[:output_url]) || Link.new(link_params)
     respond_to do |format|
       if @link.save
         session[:links] << @link.id
