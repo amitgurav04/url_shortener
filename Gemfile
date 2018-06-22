@@ -34,6 +34,9 @@ end
 
 gem 'simple_captcha2', require: 'simple_captcha'
 
+gem 'rails_12factor', group: :production
+
+ruby "2.3.1"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
