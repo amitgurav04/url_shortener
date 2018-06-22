@@ -1,6 +1,8 @@
 require 'shortener'
 class Link < ActiveRecord::Base
   include Shortener
+  include SimpleCaptcha::ModelHelpers
+  apply_simple_captcha :message => "Please enter the correct image characters.", :add_to_base => true
   MAX = 56800235583
 
   before_create :generate_random_id

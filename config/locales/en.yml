@@ -21,3 +21,11 @@
 
 en:
   hello: "Hello world"
+
+  simple_captcha:
+      placeholder: "Enter image value"
+      label: "Enter the code in the box:"
+      refresh_button_text: "Refresh"
+      message:
+        default: "Please enter the correct image characters"
+        user: "Please enter the correct image characters"

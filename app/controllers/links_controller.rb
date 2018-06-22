@@ -27,14 +27,19 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    @link = Link.find_by(output_url: link_params[:output_url]) || Link.new(link_params)
+    @link = Link.find_or_initialize_by(link_params.except(:id, :captcha, :captcha_key))
+    @link.captcha = link_params[:captcha]
+    @link.captcha_key = link_params[:captcha_key]
     respond_to do |format|
-      if @link.save
+      if @link.save_with_captcha
         session[:links] << @link.id
         flash[:success] = "Link was successfully created."
         format.html { redirect_to links_url }
         format.json { render :show, status: :created, location: @link }
       else
+        prev = @link
+        @link = Link.new(link_params)
+        @link.errors.messages.merge!(prev.errors.messages)
         format.html { render :new }
         format.json { render json: @link.errors, status: :unprocessable_entity }
       end
@@ -44,15 +49,7 @@ class LinksController < ApplicationController
   # PATCH/PUT /links/1
   # PATCH/PUT /links/1.json
   def update
-    respond_to do |format|
-      if @link.update(link_params)
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
-        format.json { render :show, status: :ok, location: @link }
-      else
-        format.html { render :edit }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
-    end
+    create
   end
 
   # DELETE /links/1
@@ -83,7 +80,7 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:input_url, :output_url, :http_status)
+      params.require(:link).permit(:input_url, :output_url, :http_status, :captcha, :captcha_key)
     end
 
     def set_session
