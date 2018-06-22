@@ -10,6 +10,9 @@ User can enter the url which he/she wants to shorten, our application will gener
 
 * Database Used:  PostgreSQL
 
+### Encoding/Decoding Module:
+Encoding/Decoding functionality is implemented in [lib/shortener.rb](lib/shortener.rb).
+
 ### Deployment:
 ##### On Local:
 * Clone the repository
