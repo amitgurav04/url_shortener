@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310063428) do
+ActiveRecord::Schema.define(version: 20180629163040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,8 +22,18 @@ ActiveRecord::Schema.define(version: 20160310063428) do
     t.integer  "http_status", default: 301
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "visit_count", default: 0,   null: false
   end
 
   add_index "links", ["input_url"], name: "index_links_on_input_url", using: :btree
+
+  create_table "simple_captcha_data", force: true do |t|
+    t.string   "key",        limit: 40
+    t.string   "value",      limit: 6
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "simple_captcha_data", ["key"], name: "idx_key", using: :btree
 
 end

@@ -10,6 +10,13 @@ class LinksController < ApplicationController
     @links = Link.find(session[:links])
   end
 
+  # GET /links
+  # GET /links.json
+  def list
+    @links = Link.order(:visit_count => :desc).first(100)
+    render :index
+  end
+
   # GET /links/1
   # GET /links/1.json
   def show
@@ -67,6 +74,7 @@ class LinksController < ApplicationController
   def go
     id = decode(params[:input_url])
     @link = Link.find(id)
+    Link.increment_counter(:visit_count, id)
     redirect_to @link.output_url, :status => @link.http_status
   rescue
     redirect_to root_url
@@ -80,7 +88,7 @@ class LinksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:input_url, :output_url, :http_status, :captcha, :captcha_key)
+      params.require(:link).permit(:input_url, :output_url, :http_status, :visit_count, :captcha, :captcha_key)
     end
 
     def set_session
