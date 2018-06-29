@@ -1,7 +1,7 @@
 require 'shortener'
 class LinksController < ApplicationController
   include Shortener
-  before_action :set_session
+  before_action :set_session, except: [:list]
   before_action :set_link, only: [:show, :edit, :update, :destroy]
 
   # GET /links

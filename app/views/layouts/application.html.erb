@@ -13,6 +13,9 @@
 <% end %>
 
 <%= yield %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_link_path,
+            :class => 'btn btn-primary' %>
 </div>
 </body>
 </html>

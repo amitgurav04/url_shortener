@@ -8,6 +8,7 @@
       <th></th>
       <th>Your URL</th>
       <th>Short URL</th>
+      <th>Visit Count</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -17,6 +18,7 @@
         <td></td>
         <td><%= link.output_url %></td>
         <td><%= link_to root_url+link.input_url, root_url+link.input_url, :target => '_blank'%></td>
+        <td><%= link.visit_count %></td>
         <td>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
                       link_path(link),
@@ -29,6 +31,3 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_link_path,
-            :class => 'btn btn-primary' %>
