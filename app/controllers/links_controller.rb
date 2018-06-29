@@ -7,7 +7,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.find(session[:links])
+    @links = Link.order(:visit_count => :desc).find(session[:links])
   end
 
   # GET /links
