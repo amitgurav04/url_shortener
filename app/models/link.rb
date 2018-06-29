@@ -8,7 +8,8 @@ class Link < ActiveRecord::Base
   before_create :generate_random_id
   after_create :update_input_url
 
-  validates :output_url, :http_status, :presence => true
+  validates :output_url, :url => true
+  validates :http_status, :presence => true
   validates :input_url, :uniqueness => true
 
   private
