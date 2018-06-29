@@ -16,6 +16,13 @@
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_link_path,
             :class => 'btn btn-primary' %>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              links_path, :class => 'btn btn-info'  %>
+
+<%= link_to 'Top Links',
+              list_path, :class => 'btn btn-success'  %>
+
 </div>
 </body>
 </html>
