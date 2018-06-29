@@ -9,7 +9,9 @@
       <th>Your URL</th>
       <th>Short URL</th>
       <th>Visit Count</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% if action_name == 'index' %>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -19,13 +21,15 @@
         <td><%= link.output_url %></td>
         <td><%= link_to root_url+link.input_url, root_url+link.input_url, :target => '_blank'%></td>
         <td><%= link.visit_count %></td>
-        <td>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      link_path(link),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-xs btn-danger' %>
-        </td>
+        <% if action_name == 'index' %>
+          <td>
+            <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                        link_path(link),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
