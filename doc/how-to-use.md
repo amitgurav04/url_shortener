@@ -10,3 +10,11 @@
     ![3](3.PNG) 
     
 * In this way you can add multiple urls and generate short url for it.
+
+#### Top 100 Links:
+* Click on ***"Top 100 Links"*** button at the bottom. You can see the Top 100 most visited urls with their visit count in descending order.
+    ![4](4.PNG)
+    
+#### URLs added by user in current session:
+* To see the list of urls added by user in current session, Click on ***"Your Links"*** button. It will show as bellow:
+    ![5](5.PNG)
